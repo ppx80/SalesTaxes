@@ -7,11 +7,11 @@ namespace Basket.Domain.Tests.Services
 {
     public class ReceiptServiceTests
     {
-        private readonly IReceiptService _receiptService;
+        private readonly IReceiptService _sut;
 
         public ReceiptServiceTests()
         {
-            _receiptService = new ReceiptService();
+            _sut = new ReceiptService();
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace Basket.Domain.Tests.Services
             {
                 Id = "b2", Price = 5.00, ProductName = "Test Product 2", Quantity = 1, Tax = 0.10
             });
-            var receiptContent = _receiptService.CreateReceipt(basket);
+            var receiptContent = _sut.CreateReceipt(basket);
             Assert.Equal(expectedReceiptContent, receiptContent);
         }
 

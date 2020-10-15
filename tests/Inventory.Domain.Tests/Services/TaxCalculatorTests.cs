@@ -8,12 +8,12 @@ namespace Inventory.Domain.Tests.Services
     public class TaxCalculatorTests
     {
         private readonly AppInventory _inventory;
-        private readonly ITaxCalculator _taxCalculator;
+        private readonly ITaxCalculator _sut;
 
         public TaxCalculatorTests()
         {
             _inventory = CreateInventory();
-            _taxCalculator = new TaxCalculator();
+            _sut = new TaxCalculator();
         }
 
         [Theory]
@@ -25,7 +25,7 @@ namespace Inventory.Domain.Tests.Services
         public void CalculateInventoryItemTaxes_ShouldCalculateTheExpectedTax(string itemId, double expectedTax)
         {
             var inventoryItem = _inventory.Items.SingleOrDefault(i => i.Id == itemId);
-            var tax = _taxCalculator.CalculateInventoryItemTax(inventoryItem, 0.1, 0.05);
+            var tax = _sut.CalculateInventoryItemTax(inventoryItem, 0.1, 0.05);
             Assert.Equal(expectedTax, tax);
         }
 
